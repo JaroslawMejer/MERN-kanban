@@ -26,6 +26,6 @@ function deleteNotes(next) {
 
 laneSchema.pre('find', populateNotes);
 laneSchema.pre('findOne', populateNotes);
-laneSchema.pre('delete', deleteNotes);
+laneSchema.pre('remove', deleteNotes);
 
 export default mongoose.model('Lane', laneSchema);

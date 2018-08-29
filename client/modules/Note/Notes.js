@@ -8,8 +8,10 @@ const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
 	return (<ul className="notes">{notes.map((note) =>
 	    <Note
 	  		id={note.id}
-	  		key={note.id}
+	  		key={note.id || id}
 	  		editing={note.editing}
+	  		laneId={laneId}
+	  		_id={note._id}
 		>
 	 	<Edit
 			editing={note.editing}

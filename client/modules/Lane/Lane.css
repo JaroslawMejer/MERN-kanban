@@ -1,1 +1,10 @@
 /* Lane styles */
+.lanesContainer{
+	display: flex;
+	justify-content: space-around;
+}
+
+.laneContainer{
+	display: flex;
+	flex-direction: column;
+}
