@@ -2,7 +2,7 @@ import callApi from '../../util/apiCaller';
 import { lanes } from '../../util/schema';
 import { normalize } from 'normalizr';
 
-import {  createNotes, deleteNote } from "../Note/NoteActions";
+import {  createNotes, deleteNote, } from "../Note/NoteActions";
 
 
 export const CREATE_LANE = 'CREATE_LANE';

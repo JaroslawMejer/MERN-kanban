@@ -22,7 +22,7 @@ const Lane = (props) => {
           onUpdate={name => updateLane({ ...lane, name, editing: false })}
         />
         <div>
-          <button onClick={() => deleteLane(laneId)}>Remove Lane</button>
+          <button onClick={() => deleteLane(lane)}>Remove Lane</button>
         </div>
       </div>
       <NotesContainer

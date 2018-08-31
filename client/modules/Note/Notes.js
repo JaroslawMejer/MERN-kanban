@@ -5,7 +5,7 @@ import styles from './Notes.css';
 import Edit from '../../components/Edit';
 
 const Notes = ({ notes, laneId, editNote, updateNote, deleteNote }) => {
-	return (<ul className="notes">{notes.map((note) =>
+	return (<ul className="notes">{notes.map((note, id) =>
 	    <Note
 	  		id={note.id}
 	  		key={note.id || id}
