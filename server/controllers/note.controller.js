@@ -35,18 +35,32 @@ export function deleteNote(req, res) {
       res.status(500).send(err);
     }
 
-    note.remove(() => {
-      res.status(200).end();
-    });
-  });
+    if(note) {
+      Lane.findOne({notes: note._id}).exec( (err, lane) => {
+        if(err) {
+          res.status(500).send(err);
+        }
+        lane.notes.pull(note);
+        
+        lane.save();
+      });
+
+      res.status(200).send(note);
+    } else {
+      res.status(500).send('Bad argument!');
+    }
+  })
 }
 
-export function editNote(req, res) {
-	Note.update({id: req.params.noteId}, req.body).exec((err, note) =>{
-		if (err) {
-			res.status(500).send(err);
-		}
-
-		res.json({ note })
-	})
+export function editNote(req, res)  {
+  const note = req.body;
+  if(!note.id || !note.task) {
+    res.status(403).end();
+  }
+  Note.findOneAndUpdate({id: note.id}, note, {new: true}, (err, updated) => {
+    if(err) {
+      res.status(500).send(err);
+    }
+    res.json(updated);
+  })
 }
