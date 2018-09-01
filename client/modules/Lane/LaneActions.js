@@ -124,11 +124,11 @@ export function changeLanesRequest(sourceLaneId, targetLaneId, noteId, newNotes)
       .then((res) => {
         const newSourceLane = res.lanes.find(lane => lane.id === sourceLaneId);
         const newSourceNotes= newSourceLane.notes.filter(note => note.id !== noteId).map(note => note._id)
-        callApi('lanes','put', {id: sourceLaneId, notes: newSourceNotes})
+        callApi(`lanes/moveNote/${noteId}`,'put', {id: sourceLaneId, notes: newSourceNotes})
       })
       
       .then((res) => {
-        callApi('lanes','put', {id: targetLaneId, notes: newNotes})
+        callApi(`lanes/moveNote/${noteId}`,'put', {id: targetLaneId, notes: newNotes})
       })
 
       .then(() => {

@@ -53,3 +53,13 @@ export function editLaneName(req, res) {
 		res.json({ lane })
 	})
 }
+
+export function moveNote(req, res) {
+  Lane.update({id: req.params.laneId}, req.body).exec((err, lane) =>{
+    if (err) {
+      res.status(500).send(err);
+    }
+
+    res.json({ lane })
+  })
+}
