@@ -6,6 +6,7 @@ import { createLaneRequest, deleteLaneRequest, updateLaneRequest, editLane, move
 import { compose } from 'redux';
 import { DropTarget } from 'react-dnd';
 import ItemTypes from '../Kanban/itemTypes';
+import callApi from '../../util/apiCaller';
 
 const mapStateToProps = (state, ownProps) => {
 	return {

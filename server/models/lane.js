@@ -15,12 +15,9 @@ function populateNotes(next) {
 }
 
 function deleteNotes(next) {
-  const notes = this.notes;
-  notes.forEach(el => {
-  	Note.findByIdAndRemove(el.id).exec()
-  });
+  this.notes.map(note => note.remove());
   next();
-};
+}
 
 
 

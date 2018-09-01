@@ -41,7 +41,7 @@ export function updateLane(lane) {
 
 export function updateLaneRequest(lane) {
   return (dispatch) => {
-    return callApi(`lanes`, 'put', {id: lane.id, name: lane.name}).then(laneResp => {
+    return callApi(`lanes/${lane.id}`, 'put', {id: lane.id, name: lane.name}).then(laneResp => {
       dispatch(updateLane(lane));
     })
   }
