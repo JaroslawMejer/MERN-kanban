@@ -55,11 +55,21 @@ export function editLaneName(req, res) {
 }
 
 export function moveNote(req, res) {
-  Lane.update({id: req.params.laneId}, req.body).exec((err, lane) =>{
+  const {sourceId, targetId} = req.body
+  const {noteId} = req.params
+  Lane.findOne({id: sourceId}).exec((err, lane) =>{
     if (err) {
       res.status(500).send(err);
     }
-
-    res.json({ lane })
+    console.log(sourceId, targetId, noteId)
+    const chosenNote = lane.notes.find(note => note.id == noteId);
+    Lane.findOne({ id: targetId })
+      .then(lane => {
+        lane.notes.push(chosenNote);
+        return lane.save();
+      })
+    lane.notes = lane.notes.filter(note => note.id !== noteId)
+    lane.save()
+    res.json({})
   })
 }

@@ -119,18 +119,7 @@ export function fetchLanes() {
 
 export function changeLanesRequest(sourceLaneId, targetLaneId, noteId, newNotes) {
   return (dispatch) => {
-    return callApi(`lanes`)
-
-      .then((res) => {
-        const newSourceLane = res.lanes.find(lane => lane.id === sourceLaneId);
-        const newSourceNotes= newSourceLane.notes.filter(note => note.id !== noteId).map(note => note._id)
-        callApi(`lanes/moveNote/${noteId}`,'put', {id: sourceLaneId, notes: newSourceNotes})
-      })
-      
-      .then((res) => {
-        callApi(`lanes/moveNote/${noteId}`,'put', {id: targetLaneId, notes: newNotes})
-      })
-
+    return callApi(`lanes/moveNote/${noteId}`,'put', {sourceId: sourceLaneId, targetId: targetLaneId})
       .then(() => {
         dispatch(removeFromLane(
           sourceLaneId,
